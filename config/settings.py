@@ -26,9 +26,11 @@ SECRET_KEY = 'django-insecure-gd4o=v@rlbmb%7n1emm7$(lhk+v2f-$=dy)_bf(=#yce)v$h+4
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'rohit-bujwane.onrender.com',
     'rohitbujwane.onrender.com',
+    '.onrender.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
 ]
 
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
