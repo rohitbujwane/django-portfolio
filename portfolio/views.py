@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db import OperationalError, ProgrammingError
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 
@@ -53,8 +54,12 @@ SKILLS = [
 
 
 def home(request):
-    db_projects = Project.objects.filter(is_featured=True)
-    projects = db_projects if db_projects.exists() else DEFAULT_PROJECTS
+    try:
+        db_projects = Project.objects.filter(is_featured=True)
+        projects = db_projects if db_projects.exists() else DEFAULT_PROJECTS
+    except (OperationalError, ProgrammingError):
+        projects = DEFAULT_PROJECTS
+
     return render(
         request,
         "portfolio/home.html",
@@ -67,11 +72,15 @@ def home(request):
 
 @require_POST
 def contact(request):
-    ContactMessage.objects.create(
-        name=request.POST.get("name", "").strip(),
-        email=request.POST.get("email", "").strip(),
-        subject=request.POST.get("subject", "").strip() or "Portfolio transmission",
-        message=request.POST.get("message", "").strip(),
-    )
-    messages.success(request, "Transmission received. Rohit's command terminal logged your signal.")
+    try:
+        ContactMessage.objects.create(
+            name=request.POST.get("name", "").strip(),
+            email=request.POST.get("email", "").strip(),
+            subject=request.POST.get("subject", "").strip() or "Portfolio transmission",
+            message=request.POST.get("message", "").strip(),
+        )
+        messages.success(request, "Transmission received. Rohit's command terminal logged your signal.")
+    except (OperationalError, ProgrammingError):
+        messages.error(request, "Message service temporarily unavailable. Please connect via social links.")
     return redirect("home")
+
