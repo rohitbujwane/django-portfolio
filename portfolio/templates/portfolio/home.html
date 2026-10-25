@@ -1,0 +1,239 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rohit Bujwane | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+</head>
+<body>
+  <div class="boot-sequence" aria-hidden="true">
+    <div class="boot-panel">
+      <span>INITIALIZING ROHIT_OS</span>
+      <strong>AI IDENTITY SYSTEM ONLINE</strong>
+      <div class="boot-line"></div>
+    </div>
+  </div>
+
+  <canvas id="universe" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="Rohit Bujwane home">
+      <span class="brand-core">RB</span>
+      <span>Rohit.System</span>
+    </a>
+    <nav aria-label="Portfolio navigation">
+      <a href="#about">Profile</a>
+      <a href="#skills">Skill Grid</a>
+      <a href="#projects">Artifacts</a>
+      <a href="#contact">Terminal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-orbit" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="hero-copy" data-depth="0.08">
+        <p class="eyebrow">Computer Science Engineering Student • AI/ML Enthusiast • Software Developer</p>
+        <h1>Rohit Bujwane</h1>
+        <p class="hero-statement">A final-year CSE student building AI-powered software solutions and practical development projects.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="button primary">Enter Artifact Vault</a>
+          <a href="#contact" class="button ghost">Open Signal Channel</a>
+        </div>
+      </div>
+      <aside class="terminal" data-depth="-0.05" aria-label="AI startup terminal">
+        <div class="terminal-top">
+          <span></span><span></span><span></span>
+          <b>neural_boot.log</b>
+        </div>
+        <p>> calibrating ambition vector</p>
+        <p>> loading Python, AI/ML, backend systems</p>
+        <p>> mapping software engineering, data science, cloud</p>
+        <p>> status: builder mode active</p>
+      </aside>
+      <div class="scroll-cue">Scroll to descend into the lab</div>
+    </section>
+
+    <section class="profile-section" id="about">
+      <div class="section-head">
+        <p class="eyebrow">Holographic Profile System</p>
+        <h2>Engineering curiosity, rendered as a living interface.</h2>
+      </div>
+      <div class="identity-panel">
+        <figure class="profile-photo-frame" aria-label="Rohit Bujwane profile photo">
+          <img src="{% static 'portfolio/images/rohit-profile.jpg' %}" alt="Rohit Bujwane" onerror="this.closest('.profile-photo-frame').classList.add('photo-missing'); this.remove();">
+          <figcaption>
+            <span>Identity Scan</span>
+            <strong>Rohit Bujwane</strong>
+            <small>Place your photo at portfolio/static/portfolio/images/rohit-profile.jpg</small>
+          </figcaption>
+        </figure>
+        <div class="identity-readout">
+          <p class="eyebrow">Builder Signature</p>
+          <h3>Computer Science Engineering student with a strong interest in Python, AI/ML, and software development.</h3>
+          <div class="identity-stats">
+            <span><b>AI</b> Machine Learning</span>
+            <span><b>DEV</b> Full Stack</span>
+            <span><b>ENG</b> Software Systems</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-grid">
+        <article class="glass-card profile-card">
+          <span class="card-index">01</span>
+          <h3>Computer Science Engineering</h3>
+          <p>B.Tech CSE student at Gramin Technical and Management Campus, Nanded (DBATU). Final year, expected graduation 2027. Previously completed a Diploma in Production Engineering from Government Polytechnic, Nanded.</p>
+        </article>
+        <article class="glass-card profile-card">
+          <span class="card-index">02</span>
+          <h3>AI / ML & Software Development</h3>
+          <p>Building technical skills through internships and projects in web development and AI/ML. Focused on developing useful AI-powered software solutions using Python, Machine Learning, and modern frameworks.</p>
+        </article>
+        <article class="glass-card profile-card">
+          <span class="card-index">03</span>
+          <h3>Career Goals</h3>
+          <p>Aspiring to build a strong career in software engineering, artificial intelligence, machine learning, data science, and full-stack development with exposure to cloud computing.</p>
+        </article>
+      </div>
+      <div class="timeline">
+        <span>Foundation: Python & Java</span>
+        <span>Exploration: AI / ML</span>
+        <span>Development: Full Stack</span>
+        <span>Future: Software Engineering & AI</span>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+      <div class="section-head">
+        <p class="eyebrow">Tech Constellation</p>
+        <h2>Signals orbiting the builder core.</h2>
+      </div>
+      <div class="skills-layout">
+        <div class="skill-sphere" aria-hidden="true">
+          <span>PY</span><span>JV</span><span>JS</span><span>AI</span><span>ML</span><span>DB</span>
+        </div>
+        <div class="skill-list">
+          {% for name, level, focus in skills %}
+            <article class="skill-row" style="--level: {{ level }}%">
+              <div>
+                <strong>{{ name }}</strong>
+                <span>{{ focus }}</span>
+              </div>
+              <i aria-hidden="true"></i>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="section-head">
+        <p class="eyebrow">Digital Artifact Vault</p>
+        <h2>Projects presented like future systems under observation.</h2>
+      </div>
+      <div class="project-grid">
+        {% for project in projects %}
+          <article class="project-card">
+            <div class="artifact-preview">
+              <span></span><span></span><span></span>
+            </div>
+            <p class="project-signal">{{ project.signal }} / {{ project.status|title }}</p>
+            <h3>{{ project.title }}</h3>
+            <small>{{ project.codename }}</small>
+            <p>{{ project.summary }}</p>
+            <div class="chip-row">
+              {% for tech in project.tech_list %}
+                <span>{{ tech }}</span>
+              {% endfor %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="section-head">
+        <p class="eyebrow">Communication Terminal</p>
+        <h2>Transmit a signal into the lab.</h2>
+      </div>
+      <form class="contact-terminal" id="form" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="system-response">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        <label>Name<input name="name" required placeholder="Your identity"></label>
+        <label>Email<input name="email" type="email" required placeholder="signal@domain.com"></label>
+        <label>Subject<input name="subject" placeholder="Collaboration vector"></label>
+        <label>Message<textarea name="message" required rows="5" placeholder="Describe the mission..."></textarea></label>
+        <button type="submit">Transmit Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer style="text-align:center; padding:2rem 1rem 1.5rem; opacity:.7; font-size:.85rem;">
+    <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:.6rem;">
+      <a href="https://github.com/rohitbujwane" target="_blank" rel="noopener" style="color:#20f6ff;">GitHub</a>
+      <a href="https://www.linkedin.com/in/rohit-bujwane-233443334" target="_blank" rel="noopener" style="color:#20f6ff;">LinkedIn</a>
+      <a href="mailto:rohitbujwane1@gmail.com" style="color:#20f6ff;">Email</a>
+    </div>
+    <p style="color:rgba(255,255,255,.45); margin:0;">&copy; 2026 Rohit Bujwane. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="{% static 'portfolio/js/experience.js' %}"></script>
+  <script>
+    const form = document.getElementById('form');
+    if (form) {
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        formData.append("access_key", "6a423425-999e-4887-bdf0-24934fa677df");
+
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        try {
+          // Also persist in local Django database in background
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form)
+          }).catch(() => {});
+
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+          } else {
+            alert("Error: " + (data.message || "Failed to send message."));
+          }
+        } catch (error) {
+          alert("Something went wrong. Please try again.");
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
